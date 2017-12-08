@@ -21,7 +21,7 @@ latest, err := fx.Latest("USD")
 - https://docs.openexchangerates.org/
 
 
-## Licence
+## License
 
 The MIT License (MIT)
 
