@@ -28,3 +28,4 @@ conf/*.env
 build
 dist
 tmp
+.\#*
