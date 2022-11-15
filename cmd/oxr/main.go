@@ -26,6 +26,7 @@ func main() {
 	flag.Parse()
 
 	if len(appID) == 0 || !isValid(cmd) {
+		flag.Usage()
 		os.Exit(1)
 	}
 
