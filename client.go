@@ -10,17 +10,19 @@ import (
 
 const (
 	// Host is the the host for the APIn
-	Host = "https://openexchangerates.org"
+	DefaultHost = "https://openexchangerates.org"
 )
 
 // Client is used to communicate with the API
 type Client struct {
+	Host  string
 	AppID string
 }
 
 // New returns a new Client with the given Application ID.
 func New(appID string) Client {
 	return Client{
+		Host:  DefaultHost,
 		AppID: appID,
 	}
 }
@@ -57,7 +59,7 @@ func (c Client) Historical(date time.Time, p *HistoricalParams) (*HistoricalResp
 func (c Client) buildLatestURL(p *LatestParams) string {
 	pathFormat := "%s/api/latest.json?app_id=%s"
 
-	path := fmt.Sprintf(pathFormat, Host, c.AppID)
+	path := fmt.Sprintf(pathFormat, c.Host, c.AppID)
 
 	url := path
 
@@ -76,7 +78,7 @@ func (c Client) buildHistoricalURL(date time.Time, p *HistoricalParams) string {
 
 	d := date.Format("2006-01-02")
 
-	path := fmt.Sprintf(pathFormat, Host, d, c.AppID)
+	path := fmt.Sprintf(pathFormat, c.Host, d, c.AppID)
 
 	url := path
 
